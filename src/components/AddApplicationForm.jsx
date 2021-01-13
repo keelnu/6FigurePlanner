@@ -68,7 +68,7 @@ function AddApplicationForm() {
         'position': position,
         'applied_on': dateApplied,
         'company_email': companyEmail,
-        'company_phone_number': companyNumber,
+        'company_number': companyNumber,
         'double_down': doubleDown,
         'interview_status': interviewStatus,
         'offer_received': offerReceived,
