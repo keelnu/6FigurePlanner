@@ -29,7 +29,7 @@ app.post('/app', appController.addApp, (req, res) => {
 });
 
 //getting the users application
-app.get('/app', appController.getApp, (req, res) => {
+app.get('/app/:id', appController.getApp, (req, res) => {
   return res.status(200).json({data: res.locals.data});
 });
 
@@ -70,8 +70,8 @@ app.use(function (err, req, res, next) {
   res.status(errorObj.status).json(errorObj.message);
 });
 
-app.listen(8080, () => {
-  console.log('App listening on port 8080!');
+app.listen(3000, () => {
+  console.log('App listening on port 3000!');
 });
 
 module.exports = app;

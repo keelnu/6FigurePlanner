@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Table, Thead, Tbody, Tr, Th, Td, Box } from '@chakra-ui/react';
 
-function ApplicationsTable() {
+function ApplicationsTable(props) {
+  // state to 
+  // GET request from '/app' to get the table data
+  // loop over that array of objects and create the rows in the table
+
 	return (
 		<Box
 			m={2}
@@ -37,16 +41,7 @@ function ApplicationsTable() {
 						<Td>No</Td>
 						<Td>2021-01-15</Td>
 					</Tr>
-					<Tr>
-						<Td>Position 2</Td>
-						<Td>XYZ Company</Td>
-						<Td>janet@xyzcompany.com</Td>
-						<Td>222-222-2222</Td>
-						<Td>2021-01-03</Td>
-						<Td>Phone Screen</Td>
-						<Td>No</Td>
-						<Td>2021-01-10</Td>
-					</Tr>
+					
 				</Tbody>
 			</Table>
 		</Box>

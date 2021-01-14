@@ -14,7 +14,7 @@ import {
   DrawerCloseButton,
 } from '@chakra-ui/react';
 
-function AddApplicationForm() {
+function AddApplicationForm(props) {
   const {isOpen, onOpen, onClose} = useDisclosure();
   const btnRef = React.useRef();
 
@@ -72,7 +72,8 @@ function AddApplicationForm() {
         'offer_received': offerReceived,
         'id': 1
       })
-    } )
+    })
+    props.setFetched(!props.fetched);
     e.preventDefault();
   };
 
@@ -114,7 +115,7 @@ function AddApplicationForm() {
                   onChange={handleCompanyEmail}
                 />
                 <Input
-                  name="company_phone_number"
+                  name="company_number"
                   placeholder="Company Phone"
                   value={companyNumber}
                   onChange={handleCompanyNumber}

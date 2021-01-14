@@ -23,7 +23,7 @@ module.exports = {
   },
   getApp: async (req, res, next) => {
     try {
-      const {id} = req.body;
+      const {id} = req.params;
       const users = await pool.query(
         'SELECT * FROM Applications WHERE user_id = $1',
         [id]
@@ -37,7 +37,7 @@ module.exports = {
 
   deleteApp: async (req, res, next) => {
     try {
-      const {id} = req.body;
+      const {id} = req.params;
       await pool.query('DELETE * FROM Applications WHERE _id = $1', [id]);
       return next();
     } catch (err) {
