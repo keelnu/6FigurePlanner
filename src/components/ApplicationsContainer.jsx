@@ -8,20 +8,13 @@ import AddApplicationForm from './AddApplicationForm.jsx';
 function ApplicationsContainer() {
   const [fetched, setFetched] = useState(false);
   const [response, setResponse] = useState([]);
-  
-  // if(props.fetched){
-	//   fetch('/app/1').then(data=> console.log(data));
-	//   props.setFetched(!props.fetched);
-  // }
 
   useEffect(() => {
     fetch("/app/1")
-    .then((res) => {
-      console.log('RESPONSE from FETCH:', res);
-      return res.json();
-    })
-    .then((res) =>{
-      setResponse(res)
+    .then((res) => res.json())
+    .then((data) => console.log('DATA FROM FETCH: ', data))
+    .then((data) => {
+      setResponse(data)
     })
     .catch((err) => {
       console.log(err);
@@ -40,9 +33,9 @@ function ApplicationsContainer() {
 				borderColor='gray.200'
 			>
 				<h1>Job Application Dashboard</h1>
-				<ApplicationsTable />
+				<ApplicationsTable fetched={fetched} setFetched={setFetched} />
 			</Container>
-        <AddApplicationForm setFetched={setFetched} fetched={fetched} />
+        <AddApplicationForm fetched={fetched} setFetched={setFetched} />
 		</div>
 	);
 }

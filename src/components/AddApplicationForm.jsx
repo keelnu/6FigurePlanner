@@ -1,5 +1,9 @@
 import React, {useState} from 'react';
 import {
+  FormControl,
+  FormLabel,
+  FormErrorMessage,
+  FormHelperText,
   Input,
   Select,
   useDisclosure,
@@ -60,7 +64,7 @@ function AddApplicationForm(props) {
   const submitData = (e) => {
     fetch('/app', {
       method: 'POST',
-      headers: {'content-type': 'application/json'},
+      headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
         'company': company,
         'position': position,
@@ -72,7 +76,11 @@ function AddApplicationForm(props) {
         'offer_received': offerReceived,
         'id': 1
       })
-    })
+      .then((data) => {
+        console.log('submitData POST data: ', data);
+        console.log('Saved to DB!');
+      })
+    });
     props.setFetched(!props.fetched);
     e.preventDefault();
   };
@@ -95,72 +103,88 @@ function AddApplicationForm(props) {
 
             <DrawerBody>
               {/* CREATE FORM INPUTS INSIDE HERE */}
-              <form id="my-form" onSubmit={submitData}>
+              {/* <form id="my-form" onSubmit={submitData}> */}
+              <FormControl isRequired id='my-form' onSubmit={submitData}>
+                <FormLabel>Company</FormLabel>
                 <Input
+                  id='input_1'
                   name="company"
                   placeholder="Company"
                   value={company}
                   onChange={handleCompany}
                 />
+                <FormLabel>Position</FormLabel>
                 <Input
+                  id='input_2'
                   name="position"
                   placeholder="Position"
                   value={position}
                   onChange={handlePosition}
                 />
+                <FormLabel>Company Email</FormLabel>
                 <Input
+                  id='input_3'
                   name="company_email"
                   placeholder="Company Email"
                   value={companyEmail}
                   onChange={handleCompanyEmail}
                 />
+                <FormLabel>Company Phone</FormLabel>
                 <Input
+                  id='input_4'
                   name="company_number"
                   placeholder="Company Phone"
                   value={companyNumber}
                   onChange={handleCompanyNumber}
                 />
+                <FormLabel>Date Applied</FormLabel>
                 <Input
+                  id='input_5'
                   name="date_applied"
                   placeholder="(YYYY-MM-DD)"
                   value={dateApplied}
                   onChange={handleDateApplied}
                 />
+                <FormLabel>Date Doubled Down</FormLabel>
                 <Input
+                  id='input_6'
                   name="double_down"
                   placeholder="(YYYY-MM-DD)"
                   value={doubleDown}
                   onChange={handleDoubleDown}
                 />
-              </form>
-              <Box>
-                <Select
-                  placeholder="Interview Status"
-                  value={interviewStatus}
-                  onChange={handleInterviewStatus}
-                >
-                  <option value="Pending">Pending</option>
-                  <option value="Phone Screen">Phone Screen</option>
-                  <option value="Onsite">Onsite</option>
-                </Select>
-              </Box>
-              <Box>
-                <Select
-                  placeholder="Offer received?"
-                  value={offerReceived}
-                  onChange={handleOfferReceived}
-                >
-                  <option value="yes">Yes</option>
-                  <option value="no">No</option>
-                </Select>
-              </Box>
+                <Box>
+                <FormLabel>Interview Status</FormLabel>
+                  <Select
+                    placeholder="–"
+                    value={interviewStatus}
+                    onChange={handleInterviewStatus}
+                  >
+                    <option value="Pending">Pending</option>
+                    <option value="Phone Screen">Phone Screen</option>
+                    <option value="Onsite">Onsite</option>
+                  </Select>
+                </Box>
+                <Box>
+                <FormLabel>Offer Received?</FormLabel>
+                  <Select
+                    placeholder="–"
+                    value={offerReceived}
+                    onChange={handleOfferReceived}
+                  >
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                  </Select>
+                </Box>
+              </FormControl>
+              {/* </form> */}
             </DrawerBody>
 
             <DrawerFooter>
               <Button variant="outline" mr={3} onClick={onClose}>
                 Cancel
               </Button>
-              <Button type="submit" form="my-form" color="blue">
+              <Button type="submit" formcontrol="my-form" color="blue">
                 Save
               </Button>
             </DrawerFooter>
